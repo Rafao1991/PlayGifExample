@@ -8,7 +8,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class PlayGifView extends View {
+public class PlayGifView extends View implements PlayGifToggleFeature{
 
     private static final int DEFAULT_MOVIEW_DURATION = 1000;
 
@@ -17,6 +17,8 @@ public class PlayGifView extends View {
 
     private long mMovieStart = 0;
     private int mCurrentAnimationTime = 0;
+
+    private Boolean toggle = true;
 
     @SuppressLint("NewApi")
     public PlayGifView(Context context, AttributeSet attrs) {
@@ -51,7 +53,9 @@ public class PlayGifView extends View {
         if (mMovie != null){
             updateAnimtionTime();
             drawGif(canvas);
-            invalidate();
+            if (toggle) {
+                invalidate();
+            }
         }else{
             drawGif(canvas);
         }
@@ -76,4 +80,13 @@ public class PlayGifView extends View {
         canvas.restore();
     }
 
+    @Override
+    public void playAndPause() {
+        if (toggle) {
+            toggle = false;
+        } else {
+            toggle = true;
+            invalidate();
+        }
+    }
 }

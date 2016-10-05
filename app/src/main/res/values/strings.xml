@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PlayGifExample</string>
+    <string name="button_play_pause">Play/Pause</string>
+    <string name="button_play_5">Play 5</string>
+    <string name="button_play_10">Play 10</string>
+    <string name="button_play_15">Play 15</string>
 </resources>

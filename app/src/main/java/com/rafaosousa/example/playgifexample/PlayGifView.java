@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Movie;
 import android.os.Build;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -18,7 +19,7 @@ public class PlayGifView extends View implements PlayGifToggleFeature{
     private long mMovieStart = 0;
     private int mCurrentAnimationTime = 0;
 
-    private Boolean toggle = true;
+    private Boolean play = true;
 
     @SuppressLint("NewApi")
     public PlayGifView(Context context, AttributeSet attrs) {
@@ -33,10 +34,24 @@ public class PlayGifView extends View implements PlayGifToggleFeature{
         }
     }
 
-    public void setImageResource(int mvId){
+    @Override
+    public void setGifResource(int mvId){
         this.mMovieResourceId = mvId;
         mMovie = Movie.decodeStream(getResources().openRawResource(mMovieResourceId));
         requestLayout();
+    }
+
+    @Override
+    public void setGifResourceWithDuration(int mvId, int duration) {
+        this.mMovieResourceId = mvId;
+        mMovie = Movie.decodeStream(getResources().openRawResource(mMovieResourceId));
+        requestLayout();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override public void run() {
+                playAndPause();
+            }
+        }, duration);
     }
 
     @Override
@@ -53,7 +68,7 @@ public class PlayGifView extends View implements PlayGifToggleFeature{
         if (mMovie != null){
             updateAnimtionTime();
             drawGif(canvas);
-            if (toggle) {
+            if (play) {
                 invalidate();
             }
         }else{
@@ -82,11 +97,22 @@ public class PlayGifView extends View implements PlayGifToggleFeature{
 
     @Override
     public void playAndPause() {
-        if (toggle) {
-            toggle = false;
+        if (play) {
+            play = false;
         } else {
-            toggle = true;
+            play = true;
             invalidate();
         }
+    }
+
+    @Override
+    public void playDuringTime(int duration) {
+        play = true;
+        invalidate();
+        new Handler().postDelayed(new Runnable() {
+            @Override public void run() {
+                playAndPause();
+            }
+        }, duration);
     }
 }

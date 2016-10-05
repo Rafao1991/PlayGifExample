@@ -15,14 +15,66 @@
         android:id="@+id/view_gif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
+
+    <com.rafaosousa.example.playgifexample.PlayGifView
+        android:id="@+id/view_gif_with_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_40"
+        android:layout_below="@id/view_gif"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_gif_with_duration">
+
+        <Button
+            android:id="@+id/button_play_5_secs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/margin_5"
+            android:layout_marginEnd="@dimen/margin_5"
+            android:text="@string/button_play_5"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_green_dark" />
+
+        <Button
+            android:id="@+id/button_play_10_secs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/button_play_10"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_green_dark"/>
+
+        <Button
+            android:id="@+id/button_play_15_secs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:layout_marginStart="@dimen/margin_5"
+            android:text="@string/button_play_15"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_green_dark"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/holo_green_dark"
-        style="@android:style/MediaButton.Play"/>
+        android:text="@string/button_play_pause"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_green_dark"/>
 
 </RelativeLayout>
